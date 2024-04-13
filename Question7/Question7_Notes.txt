@@ -1,0 +1,12 @@
+Question 7 went much better for me than Question 5 did.
+ It took about 4 hours before code cleanup & commenting to get it working
+
+However, I feel like once again I had to walk "outside" of what might have
+ been intended, as I couldn't find an existing event to hook into, so I
+ added a new event in the main loop, providing the delta between each frame
+
+The UI itself was fairly straightforward besides that though.
+
+There's a slight issue that I might come back and work on with the button
+ being able to go over the top bar of the window, I'm probably not pulling
+ the right Rect from the window for determining the position is all.

@@ -1,0 +1,11 @@
+MainWindow
+  id: jumpWindow
+  !text: tr("")
+  size: 500 500
+
+  Button
+    id: buttonJump
+    !text: tr("Jump!")
+    focusable: false
+    padding: 1
+    &onMousePress: modules.jump_dialog.Jump.onButtonJumpPress

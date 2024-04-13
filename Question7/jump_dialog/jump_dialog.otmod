@@ -1,0 +1,9 @@
+Module
+  name: jump_dialog
+  description: Jump Dialog for Tavernlight Test
+  author: Ben King
+  website: https://github.com/exlted/Test
+  sandboxed: true
+  scripts: [ jump_dialog ]
+  @onLoad: init()
+  @onUnload: terminate()
