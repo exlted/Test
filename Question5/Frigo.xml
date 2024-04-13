@@ -1,0 +1,11 @@
+<!-- Gets added to spells.xml -->
+<instant group="support" spellid="500" name="Tavernlight Question 5 Spell" words="frigo" level="0" mana="1" premium="0" range="0" casterTargetOrDirection="0" blockwalls="0" cooldown="0" groupcolldown="0" script="attack/Frigo.lua">
+	<vocation name="Sorcerer"/>
+	<vocation name="Druid"/>
+	<vocation name="Paladin"/>
+	<vocation name="Knight"/>
+	<vocation name="Master Sorcerer"/>
+	<vocation name="Elder Druid"/>
+	<vocation name="Royal Paladin"/>
+	<vocation name="Elite Knight"/>
+</instant>

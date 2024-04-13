@@ -1,0 +1,29 @@
+This first pass took me an evening and most of a morning to do
+ - Not including setting up the server & client
+
+I don't know if it's just the files I could find, but the small tornado
+  wasn't available as a default texture, and I had to use an editor
+  that I found at https://github.com/Arch-Mina/Assets-Editor, during
+  which time, I realized that the texture of the smaller tornado was
+  technically included in the bigger one, just never rendering.
+So, through the asset editor I ended up making a custom texture (index 81)
+  that utilized the graphics for the small tornado. Somehow, during that edit
+  I think I broke the big tonado and didn't realize it until much later...
+  Which caused much frustration on my part. Because I broke the old one and
+  couldn't tell why, I ended up just making a new version of the big tornado
+  at index 82, which is why this code doesn't use any default texture indexes
+
+I kept running into problems when I tried to use Combat objects, but looking back
+  I'm not sure if those were because of my broken sprite files, or if it was
+  because I was doing something wrong. But, once I got something working, I decided
+  I wanted to just get a first pass done on this question and get other things done
+  before I come back and try making it use Combat objects again.
+
+To determine the timing, I opened the file up in my video editor and stepped 
+  frame-by-frame to determine as close to exact timings as I could find for
+  replicating the video.
+
+Between me probably causing my own problems and the difficult to use documentation.
+  This probably has been one of the hardest questions on a technical test I've taken,
+  That being said, I've found even less documentation to help with Question 6, so that'll
+  probably take the cake once I get to it.
