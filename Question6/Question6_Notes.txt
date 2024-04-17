@@ -1,0 +1,73 @@
+At the time of writing, this one has me stumped.
+
+I might have an answer if I update to a newer version of OTClient (from mehah)
+ and potentially a newer version of the server too, as they seem to have more
+ infrastructure in place for doing this kind of effect. But no matter what I 
+ look into doing, I end up running into the fact that I don't see any way to
+ draw multiple characters, much less with transparancy. 
+
+From a structural standpoint, this seems like something that has to be split
+ across the client & server. Especially since the server does all of the movement
+ of the sprites on the map.
+
+Assuming it has to be split across Client & Server, I think the only answer is to
+ utilize a custom opcode to trigger the client to render this correctly when the
+ dash happens.
+
+Also, I'm not really sure what's being done in the video to trigger  the dash anyway,
+ At this time I'm writing a dash spell that'll do the movement, but to do so would
+ show the player casting a spell in the video, which they aren't
+
+I know I've seen somebody else doing something with drawing outlines on the player
+ somewhere in the OTLand forums, though I haven't found my way back to that post
+ since starting work on this question.
+
+
+I feel like the "easiest" path forward would be to do like I did for question 7
+ and modify the client and probably the server too to add Lua hooks in to being
+ able to do the variety of things that I think need to be done to replicate the
+ displayed behavior.
+
+
+Things I see in the video:
+ 1. Red outline around the player (Doable with a shader, but easier with a frame buffer & multiple draw)
+ 2. Maximum dash distance of around 7 tiles
+ 3. 4 (5?) duplicates of the player at lowering levels of transparency getting futher away from the player (Only doable with a shader? The server doesn't seem to have a concept of setting specific transparency)
+ 4. Player glides from point A to point B, not an instant teleport (I have no idea how to move quickly without teleporting instantly...)
+ 5. "You can't dash any further" displayed when dash is interupted by a solid object
+
+-- Update --
+From my reading, I feel like the best answer I have for this is switching from the edubart
+ to the mehaha fork of otclient (https://github.com/mehah/otclient) there is probably an
+ earlier version I could use that implements the ability to apply shaders to Things, which
+ then gets inherited all the way to Creatures and/or the Player.
+
+I'm going to try to write a shader that handles BOTH the outline AND the afterimage.
+ Besides the shader, and testing everything together, I think I have the dash code
+ and the abiltity to enable/disable the shader on the client from the server all 
+ together at this point. So, if I can get the shader working, then, I can consider
+ this task pretty much complete
+
+-- Update --
+Turns out that teleporting, no matter how slowly I queue each additional teleport is just too fast (which makes sense)
+So, I'm gonna check out setting walk speed and walking to the tile so the character interpolates from tile to tile
+
+-- Update --
+Walking doesn't seem to be much better from my first tests, but my server is all kinds of messed up anyway, client desyncs pretty much before I even move, so I've probably done something
+ wrong early on in this process...
+
+I got the ability to send opcodes to the spectating clients to enable/disable the shader on the player, but even with my dumb test shader that should be super obvious nothing seems to
+ be changing. I think I have a couple hours at most left that I can work on this, and I'm pretty sure I have no chance of doing a full reproduction at this point
+
+-- Update --
+Well, more progress, I reworked the walking and it looks better as a dash now, though for some reason the increased speed isn't getting set back to its initial value when I try to...
+Additionally I fixed the "You can't dash any further" text, so that's working.
+
+I've also gotten a shader working during the dash, but not _my_ shader working... For some reason, even using (as far as I can tell) exactly the same code, I end up calling the createFragmentShader with parameters one step off from where they should be, meaning the name is being used as the path to the shader, and the name is always an empty string, which doesn't work very well...
+
+I still have absolutely 0 clue about how to have the sprite be instanced. I don't see a way to set up an Instancing shader, nor do I necessarily think that an instancing shader would be a very good way to make that work.
+
+I'll do what I can to finish this up after work tonight, but it's my last free night this week, so, whatever I get done will be what gets done.
+
+-- Update --
+This last day was a lot more productive than I expected. I know this doesn't match the original. For some amount, I think that's because of my choice to walk instead of teleport the characters. But it works a whole lot better than I was expecting it to.

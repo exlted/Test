@@ -1,0 +1,10 @@
+Module
+  name: dash_shader
+  description: Dash Shader for Tavernlight Test
+  author: Ben King
+  website: https://github.com/exlted/Test
+  sandboxed: true
+  scripts: [ dash_shader ]
+  autoload: true
+  @onLoad: init()
+  @onUnload: terminate()
